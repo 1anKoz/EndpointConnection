@@ -1,9 +1,22 @@
 ﻿@page "/"
+@using Models;
 
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
+<button @onclick="GetData">Get titbit</button>
 
-Welcome to your new app.
+@if (catFact != null)
+{
+    <h1>Do you want to learn something about sierściuch?</h1>
+    <p>@catFact.fact</p>
+}
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+@code{
+    public CatFact catFact;
+
+    public HttpClient httpClient = new HttpClient();
+    public async Task GetData()
+    {
+        catFact = await httpClient.GetFromJsonAsync<CatFact>("https://catfact.ninja/fact");
+    }
+}
