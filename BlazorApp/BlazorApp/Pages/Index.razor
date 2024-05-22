@@ -1,19 +1,49 @@
 ﻿@page "/"
 @using Models;
+<style>
+    .container {
+        position: relative;
+        text-align: center;
+        color: white;
+    }
 
+    .centered {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .vertical-center {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+</style>
 <PageTitle>Index</PageTitle>
-<h1>Do you want to learn something about sierściuch?</h1>
+<h1>Do you want to learn something interesting about sierściuch?</h1>
 
 <button @onclick="GetData">Get titbit</button>
 
-@* @if (catFact != null)
-{
-    <p>@catFact.fact</p>
-} *@
-
 @foreach (var fact in catFacts)
 {
-    <p>@fact.fact</p>
+    <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="col">
+                    <div class="container">
+                        <img src="" />
+                        <div class="vertical-center" style="color:black">@fact.fact</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    @* <p>@fact.fact</p> *@
 }
 
 @code{
