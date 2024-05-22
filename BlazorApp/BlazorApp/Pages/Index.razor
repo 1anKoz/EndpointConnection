@@ -36,7 +36,7 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div class="col">
                     <div class="container">
-                        <img src="" />
+                        <img src="@fact.ImgPath" />
                         <div class="vertical-center" style="color:black">@fact.fact</div>
                     </div>
                 </div>
@@ -50,13 +50,21 @@
     public CatFact catFact;
     List<CatFact> catFacts = new List<CatFact>();
 
+    private static Random random = new Random();
+
     public HttpClient httpClient = new HttpClient();
     public async Task GetData()
     {
         catFact = await httpClient.GetFromJsonAsync<CatFact>("https://catfact.ninja/fact");
+        catFact.ImgPath = GeneratePath();
         catFacts.Add(catFact);
 
         WriteToFile data = new WriteToFile();
         await data.SaveCatFactAsync(catFact);
+    }
+
+    private string GeneratePath()
+    {
+        return $"Images/image{random.Next(1, 4)}.jpg";
     }
 }
