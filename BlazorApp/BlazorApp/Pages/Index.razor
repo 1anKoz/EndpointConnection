@@ -2,21 +2,28 @@
 @using Models;
 
 <PageTitle>Index</PageTitle>
+<h1>Do you want to learn something about sierściuch?</h1>
 
 <button @onclick="GetData">Get titbit</button>
 
-@if (catFact != null)
+@* @if (catFact != null)
 {
-    <h1>Do you want to learn something about sierściuch?</h1>
     <p>@catFact.fact</p>
+} *@
+
+@foreach (var fact in catFacts)
+{
+    <p>@fact.fact</p>
 }
 
 @code{
     public CatFact catFact;
+    List<CatFact> catFacts = new List<CatFact>();
 
     public HttpClient httpClient = new HttpClient();
     public async Task GetData()
     {
         catFact = await httpClient.GetFromJsonAsync<CatFact>("https://catfact.ninja/fact");
+        catFacts.Add(catFact);
     }
 }
