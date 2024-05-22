@@ -22,6 +22,7 @@
         transform: translateY(-50%);
     }
 </style>
+
 <PageTitle>Index</PageTitle>
 <h1>Do you want to learn something interesting about sierściuch?</h1>
 
@@ -43,7 +44,6 @@
 
         </div>
     </div>
-    @* <p>@fact.fact</p> *@
 }
 
 @code{
@@ -55,5 +55,8 @@
     {
         catFact = await httpClient.GetFromJsonAsync<CatFact>("https://catfact.ninja/fact");
         catFacts.Add(catFact);
+
+        WriteToFile data = new WriteToFile();
+        await data.SaveCatFactAsync(catFact);
     }
 }
