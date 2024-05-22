@@ -7,7 +7,6 @@ namespace BlazorApp
 {
     public class WriteToFile
     {
-        //private readonly string _filePath;
         static string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         static string _filePath = Path.Combine(docPath, "D:\\111111\\hobby\\programowanie\\NetwiseRecruitmentApp\\BlazorApp\\titbits.txt");
 

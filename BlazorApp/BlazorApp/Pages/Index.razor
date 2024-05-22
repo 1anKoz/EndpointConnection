@@ -51,6 +51,7 @@
     List<CatFact> catFacts = new List<CatFact>();
 
     private static Random random = new Random();
+    private int lastNumber = -1;
 
     public HttpClient httpClient = new HttpClient();
     public async Task GetData()
@@ -65,6 +66,15 @@
 
     private string GeneratePath()
     {
-        return $"Images/image{random.Next(1, 4)}.jpg";
+        int newNumber;
+
+        do
+        {
+            newNumber = random.Next(1, 5);
+        } while (newNumber == lastNumber);
+
+        lastNumber = newNumber;
+
+        return $"Images/image{newNumber}.jpg";
     }
 }
